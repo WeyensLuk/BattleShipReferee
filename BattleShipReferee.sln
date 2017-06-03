@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleShipReferee.API", "BattleShipReferee.API\BattleShipReferee.API.csproj", "{640894D9-8798-4E24-8473-DF4C4E8F728D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleShipReferee.API.Tests", "BattleShipReferee.API.Tests\BattleShipReferee.API.Tests.csproj", "{7DC4C401-C9BC-41DC-8B24-E56BA32672CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{640894D9-8798-4E24-8473-DF4C4E8F728D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{640894D9-8798-4E24-8473-DF4C4E8F728D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{640894D9-8798-4E24-8473-DF4C4E8F728D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{640894D9-8798-4E24-8473-DF4C4E8F728D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC4C401-C9BC-41DC-8B24-E56BA32672CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC4C401-C9BC-41DC-8B24-E56BA32672CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC4C401-C9BC-41DC-8B24-E56BA32672CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC4C401-C9BC-41DC-8B24-E56BA32672CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
