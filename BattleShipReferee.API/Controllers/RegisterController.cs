@@ -8,7 +8,7 @@ namespace BattleShipReferee.API.Controllers
     public class RegisterController : ApiController
     {
         [HttpPost, Route("", Name = "Register")]
-        public void Register([FromBody]RegisterRequest registerRequest)
+        public void Register(RegisterRequest registerRequest)
         {
             GameInstance.Instance.Register(registerRequest);
             if (!GameInstance.Instance.IsGameReady(registerRequest.GameId)) return;

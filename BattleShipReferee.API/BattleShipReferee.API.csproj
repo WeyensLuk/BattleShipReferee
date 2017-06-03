@@ -157,6 +157,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Business\RandomTurnDeterminer.cs" />
     <Compile Include="Business\TurnNotifier.cs" />
+    <Compile Include="Controllers\AddCustomHeaderFilter.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ResultNotifier.cs" />
     <Compile Include="Controllers\ShotController.cs" />
