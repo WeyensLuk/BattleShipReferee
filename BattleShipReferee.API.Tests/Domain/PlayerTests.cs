@@ -56,7 +56,7 @@ namespace BattleShipReferee.API.Tests.Domain
         }
 
         [Test]
-        public void ProcessShot_Sunk_ReturnsHit()
+        public void ProcessShot_Sunk_ReturnsSunk()
         {
             var ship = new BattleShip
             {
