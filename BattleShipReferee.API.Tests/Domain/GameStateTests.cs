@@ -49,7 +49,7 @@ namespace BattleShipReferee.API.Tests.Domain
                 PlayerTwo = new Player()
             };
 
-            Assert.That(gameState.GetActivePlayer(), Is.EqualTo(playerOne));
+            Assert.That(gameState.ActivePlayer, Is.EqualTo(playerOne));
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace BattleShipReferee.API.Tests.Domain
                 PlayerTwo = playerTwo
             };
 
-            Assert.That(gameState.GetActivePlayer(), Is.EqualTo(playerTwo));
+            Assert.That(gameState.ActivePlayer, Is.EqualTo(playerTwo));
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace BattleShipReferee.API.Tests.Domain
                 PlayerTwo = new Player()
             };
 
-            Assert.That(() => { gameState.GetActivePlayer(); }, Throws.ArgumentException);
+            Assert.That(() => gameState.ActivePlayer, Throws.ArgumentException);
         }
     }
 }

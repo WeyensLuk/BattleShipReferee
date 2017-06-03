@@ -1,5 +1,6 @@
 ﻿using BattleShipReferee.API.Domain;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace BattleShipReferee.API.Tests.Domain
 {
@@ -13,7 +14,7 @@ namespace BattleShipReferee.API.Tests.Domain
                 GameId = "YoHans!",
                 PlayerId = "Walter",
                 Url = "huppeldepup",
-                BattleShipGrid = new bool[10, 10]
+                BattleShips = new List<BattleShip>()
             };
             GameInstance.Instance.Register(request);
 
@@ -22,36 +23,7 @@ namespace BattleShipReferee.API.Tests.Domain
             Assert.That(gameState.PlayerTwo, Is.Null);
             Assert.That(gameState.PlayerOne.Id, Is.EqualTo("Walter"));
             Assert.That(gameState.PlayerOne.Url, Is.EqualTo("huppeldepup"));
-            Assert.That(gameState.PlayerOne.BattleShipGrid, Is.EqualTo(new FieldState[10, 10]));
-        }
-
-        [Test]
-        public void Add_AddSecondPlayer_AddsSecondPlayerToGame()
-        {
-            GameInstance.Instance.Register(new RegisterRequest
-            {
-                GameId = "YoHans!",
-                PlayerId = "Walter",
-                Url = "huppeldepup",
-                BattleShipGrid = new bool[10, 10]
-            });
-
-            var request = new RegisterRequest
-            {
-                GameId = "YoHans!",
-                PlayerId = "Luc",
-                Url = "huppeldepup2",
-                BattleShipGrid = new bool[10, 10]
-            };
-            GameInstance.Instance.Register(request);
-
-
-            var gameState = GameInstance.Instance.GetGame("YoHans!");
-            Assert.That(gameState.PlayerOne, Is.Not.Null);
-            Assert.That(gameState.PlayerTwo, Is.Not.Null);
-            Assert.That(gameState.PlayerTwo.Id, Is.EqualTo("Luc"));
-            Assert.That(gameState.PlayerTwo.Url, Is.EqualTo("huppeldepup2"));
-            Assert.That(gameState.PlayerTwo.BattleShipGrid, Is.EqualTo(new FieldState[10, 10]));
+            Assert.That(gameState.PlayerOne.BoardState.BattleShips, Is.EqualTo(new List<BattleShip>()));
         }
 
         [Test]
@@ -62,7 +34,7 @@ namespace BattleShipReferee.API.Tests.Domain
                 GameId = "YoHans!",
                 PlayerId = "Walter",
                 Url = "huppeldepup",
-                BattleShipGrid = new bool[10, 10]
+                BattleShips = new List<BattleShip>()
             });
 
             var request = new RegisterRequest
@@ -70,13 +42,40 @@ namespace BattleShipReferee.API.Tests.Domain
                 GameId = "YoWalter!",
                 PlayerId = "Luc",
                 Url = "huppeldepup2",
-                BattleShipGrid = new bool[10, 10]
+                BattleShips = new List<BattleShip>()
             };
             GameInstance.Instance.Register(request);
 
-
             Assert.That(GameInstance.Instance.GetGame("YoHans!"), Is.Not.Null);
             Assert.That(GameInstance.Instance.GetGame("YoWalter!"), Is.Not.Null);
+        }
+
+        [Test]
+        public void Add_AddSecondPlayer_AddsSecondPlayerToGame()
+        {
+            GameInstance.Instance.Register(new RegisterRequest
+            {
+                GameId = "YoHans!",
+                PlayerId = "Walter",
+                Url = "huppeldepup",
+                BattleShips = new List<BattleShip>()
+            });
+
+            var request = new RegisterRequest
+            {
+                GameId = "YoHans!",
+                PlayerId = "Luc",
+                Url = "huppeldepup2",
+                BattleShips = new List<BattleShip>()
+            };
+            GameInstance.Instance.Register(request);
+
+            var gameState = GameInstance.Instance.GetGame("YoHans!");
+            Assert.That(gameState.PlayerOne, Is.Not.Null);
+            Assert.That(gameState.PlayerTwo, Is.Not.Null);
+            Assert.That(gameState.PlayerTwo.Id, Is.EqualTo("Luc"));
+            Assert.That(gameState.PlayerTwo.Url, Is.EqualTo("huppeldepup2"));
+            Assert.That(gameState.PlayerTwo.BoardState.BattleShips, Is.EqualTo(new List<BattleShip>()));
         }
     }
 }
