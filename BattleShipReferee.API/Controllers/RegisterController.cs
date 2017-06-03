@@ -1,13 +1,14 @@
-﻿using System.Web.Http;
-using BattleShipReferee.API.Business;
+﻿using BattleShipReferee.API.Business;
 using BattleShipReferee.API.Domain;
+using System.Web.Http;
 
 namespace BattleShipReferee.API.Controllers
 {
+    [RoutePrefix("Register")]
     public class RegisterController : ApiController
     {
-        [HttpPost]
-        public void Register(RegisterRequest registerRequest)
+        [HttpPost, Route("", Name = "Register")]
+        public void Register([FromBody]RegisterRequest registerRequest)
         {
             GameInstance.Instance.Register(registerRequest);
             if (!GameInstance.Instance.IsGameReady(registerRequest.GameId)) return;

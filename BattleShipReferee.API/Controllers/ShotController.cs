@@ -5,21 +5,20 @@ using System.Web.Http;
 
 namespace BattleShipReferee.API.Controllers
 {
-    public class ShotController
+    [RoutePrefix("Shot")]
+    public class ShotController : ApiController
     {
-        [HttpPost]
-        public void Shot(ShotRequest request)
+        [HttpPost, Route("", Name = "Shot")]
+        public string Shot(ShotRequest request)
         {
-            var resultNotifier = new ResultNotifier();
             var gameState = GameInstance.Instance.GetGame(request.GameId);
             var activePlayer = gameState.ActivePlayer;
             if (activePlayer.Id != request.PlayerId) throw new HttpException(400, "It's not your turn! Keep it in your pants!");
             var result = gameState.InActivePlayer.ProcessShot(request.Location);
-            resultNotifier.Notify(activePlayer, result.ToString());
 
-            activePlayer.IsMyTurn = false;
             if (gameState.HasGameEnded())
             {
+                var resultNotifier = new ResultNotifier();
                 resultNotifier.Notify(activePlayer, "You won!");
                 resultNotifier.Notify(gameState.InActivePlayer, "You lose! SUCKER!");
             }
@@ -27,6 +26,8 @@ namespace BattleShipReferee.API.Controllers
             {
                 new TurnNotifier().Notify(gameState.InActivePlayer);
             }
+            activePlayer.IsMyTurn = false;
+            return result.ToString();
         }
     }
 }
